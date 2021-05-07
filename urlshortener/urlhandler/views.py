@@ -14,6 +14,7 @@ succesfully_generated = False
 def generate_random_shorturl(length):
     ''' Generates a random short URL key of given length'''
     # base 62 conversion - [A-Z][a-z][0-9]  
+    
     random_key = ''.join(
         random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=length)
         )
