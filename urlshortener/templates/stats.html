@@ -9,7 +9,7 @@ transform: translate(-50%, -50%);
 display: inline-flex;">
     <div class="card text-center mx-auto my-auto" style="width: 55rem;">
         <div class="card-body">
-            <h5 class="card-title">ShortURL : 
+            <h5 class="card-title">Short URL : 
                 <a href="http://127.0.0.1:8000/{{ query.short_url }}">
                     http://127.0.0.1:8000/{{ query.short_url }}
                 </a>
@@ -19,7 +19,7 @@ display: inline-flex;">
                     {{ query.original_url }}
               </a>
             </h5>
-             <h5 class="card-title">Visits: {{ query.visits }}</h5>
+             <h5 class="card-title">Number of Visit: <b> {{ query.visits }} </b></h5>
             <a href="/" class="btn btn-success">Shorten a URL</a>
         </div>
     </div>
