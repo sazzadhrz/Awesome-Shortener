@@ -2,12 +2,13 @@
 
 {% block content %}
 
-<!-- form to generate short url -->
+
 <div class="container shadow p-4">
     <div class="row">
         <div class="col-12 text-center py-2">
             <h3>Shorten A Url</h3>
         </div>
+        <!-- Warning Message Block -->
         <div class="col-10 col-sm-10 col-md-6 mx-auto">
 
             {% if messages %}
@@ -21,7 +22,8 @@
             </div>
             {% endfor %}
             {% endif %}
-
+            
+            <!-- form to generate short url -->
             <form action="{% url 'generate' %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
@@ -30,8 +32,8 @@
                 <div class="form-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">http://127.0.0.1:8000/</div>
-                        <input type="text" name="short" class="form-control" placeholder="Short Char (6 chars)"
-                            maxlength="6" id="short">
+                        <input type="text" name="short" class="form-control" placeholder="Short Char (7 chars)"
+                            maxlength="7" id="short">
 
                     </div>
                     <p id="shorthelp" class="form-text text-muted">Leave It Blank To generate randomly.</p>
@@ -45,29 +47,29 @@
 </div>
 
 <!-- to display the new generated short url -->
+{% if succesfully_generated %}
 <div class="container my-4">
     <div class="row">
         <div class="col-12 text-center">
-            {% if succesfully_generated %}
-            <h4>Successfully Shortened the provided Url</h4>
-            {% endif %}
+            
+            <h6 class="alert alert-success" role="alert">Successfully Shortened the provided Url</h6>
+
         </div>
     </div>
-    <div class="row justify-content-between text-center">
-        
+    <div class="container row justify-content-between align-items-center h-100 d-flex text-center">
             {% for u in urls %}
 
-               <div class="col-6 offset-md-2">
+               <div class="mx-auto">
                 <h6>Original : <a href="{{ u.original_url }}">{{ u.original_url }}</a></h6> 
-                <h5>Short : <a href="http://localhost:8000/{{ u.short_url }}">http://localhost:8000/{{ u.short_url }}</a></h5>
+                <h5>ShortURL : <a href="http://127.0.0.1:8000/{{ u.short_url }}">http://127.0.0.1:8000/{{ u.short_url }}</a></h5>
                </div>
+               <!-- <div class="col-3"></div> -->
 
             {% endfor %}
-    
-    
+
     </div>
 </div> 
-
+{% endif %}
 
 
 {% endblock %}
