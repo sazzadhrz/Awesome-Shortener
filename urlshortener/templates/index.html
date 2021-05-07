@@ -1,0 +1,73 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<!-- form to generate short url -->
+<div class="container shadow p-4">
+    <div class="row">
+        <div class="col-12 text-center py-2">
+            <h3>Shorten A Url</h3>
+        </div>
+        <div class="col-10 col-sm-10 col-md-6 mx-auto">
+
+            {% if messages %}
+            {% for msg in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ msg }}
+
+                <button type="button" class="close" data-dismiss="alert" area-label="Close">
+                    <span area-hidden-true>&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form action="{% url 'generate' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="url" name="original" class="form-control" placeholder="Original Url">
+                </div>
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">http://127.0.0.1:8000/</div>
+                        <input type="text" name="short" class="form-control" placeholder="Short Char (6 chars)"
+                            maxlength="6" id="short">
+
+                    </div>
+                    <p id="shorthelp" class="form-text text-muted">Leave It Blank To generate randomly.</p>
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" class="btn btn-primary px-4" value="Generate">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- to display the new generated short url -->
+<div class="container my-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            {% if succesfully_generated %}
+            <h4>Successfully Shortened the provided Url</h4>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-between text-center">
+        
+            {% for u in urls %}
+
+               <div class="col-6 offset-md-2">
+                <h6>Original : <a href="{{ u.original_url }}">{{ u.original_url }}</a></h6> 
+                <h5>Short : <a href="http://localhost:8000/{{ u.short_url }}">http://localhost:8000/{{ u.short_url }}</a></h5>
+               </div>
+
+            {% endfor %}
+    
+    
+    </div>
+</div> 
+
+
+
+{% endblock %}
