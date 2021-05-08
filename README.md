@@ -5,6 +5,7 @@
 ## Features
 - Shorten a URL based on user's custom input. 
 - Shorten a URL on computers decision. 
+- No signup or login required! 
 - No expiration date! Create once and use lifelong. 
 - Analytics. Users can check how many times the short URL is visited.
 - and many more....!!
